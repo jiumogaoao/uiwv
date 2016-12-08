@@ -67,10 +67,13 @@
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
                 },300);
                                                                 $scope.send=function(){
+                                                                alert(2);
                                                                 window.webkit.messageHandlers.AppModel.postMessage({body: '1'});
                                                                 }
             }]);
-
+            var alertA=function(num){
+                alert(num);
+            }
         </script>
     </body>
 </html>

@@ -27,17 +27,49 @@
                                       configuration:config];
     [self.topView setUrl:@"top" target:self];
     [self.view addSubview:self.topView];
+    
     //主框
     CGRect frameMain=CGRectMake(0,100,self.view.bounds.size.width,self.view.bounds.size.height-100);
     self.webView = [[WKWebView alloc] initWithFrame:frameMain
                                       configuration:config];
     [self.webView setUrl:@"index" target:self];
     [self.view addSubview:self.webView];
+    [self.webView addObserver:self
+                   forKeyPath:@"loading"
+                      options:NSKeyValueObservingOptionNew
+                      context:nil];
+    
     }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change
+                       context:(void *)context {
+    if ([keyPath isEqualToString:@"loading"]) {
+        NSLog(@"loading");
+    }
+    
+    // 加载完成
+    if (!self.webView.loading) {
+        [self.webView callJS:@"alertA(100)"];
+    }
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+    NSLog(@"%s", __FUNCTION__);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"测试" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:NULL];
+    NSLog(@"%@", message);
 }
 
 #pragma mark - WKScriptMessageHandler

@@ -10,5 +10,6 @@
 
 @interface WKWebView (JavaScript)
 -(void)setUrl:(NSString *)url target:(id)targetName;
+-(void)callJS:(NSString *)fn;
 +(WKWebViewConfiguration *)config:(NSString *)name target:(id)targetName;
 @end

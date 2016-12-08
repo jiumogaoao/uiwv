@@ -20,6 +20,12 @@
     self.UIDelegate = targetName;
 
 };
+-(void)callJS:(NSString *)fn{
+    [self evaluateJavaScript:fn completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+        NSLog(@"response: %@ error: %@", response, error);
+        NSLog(@"%@",fn);
+    }];
+};
 +(WKWebViewConfiguration *)config:(NSString *)name target:(id)targetName{
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     // 设置偏好设置
