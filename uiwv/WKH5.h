@@ -7,9 +7,18 @@
 //
 
 #import <WebKit/WebKit.h>
+#import <UIKit/UIKit.h>
 
 @interface WKWebView (JavaScript)
--(void)setUrl:(NSString *)url target:(id)targetName;
+-(void)setUrl:(NSString *)url
+       target:(id)targetName;
 -(void)callJS:(NSString *)fn;
-+(WKWebViewConfiguration *)config:(NSString *)name target:(id)targetName;
++(WKWebViewConfiguration *)config:(NSString *)name
+                           target:(id)targetName;
+@end
+
+@interface UIViewController (JavaScript)
+-(void)getCallBack:(NSString *)name
+      callBackJSON:(NSDictionary*)callback;
+-(CGFloat)ReSize;
 @end

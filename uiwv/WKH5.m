@@ -7,7 +7,14 @@
 //
 
 #import "WKH5.h"
+@implementation UIViewController (JavaScript)
+-(void)getCallBack:(NSString *)name callBackJSON:(NSDictionary*)callback{
 
+};
+-(CGFloat)ReSize{
+    return self.view.bounds.size.width/750;
+};
+@end
 @implementation WKWebView (JavaScript)
 
 -(void)setUrl:(NSString *)url target:(id)targetName{
@@ -26,7 +33,9 @@
         NSLog(@"%@",fn);
     }];
 };
-+(WKWebViewConfiguration *)config:(NSString *)name target:(id)targetName{
+
++(WKWebViewConfiguration *)config:(NSString *)name
+                           target:(id)targetName{
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     // 设置偏好设置
     config.preferences = [[WKPreferences alloc] init];

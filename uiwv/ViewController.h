@@ -6,7 +6,7 @@
 //  Copyright © 2016年 高志强. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "WKH5.h"
 
 @interface ViewController : UIViewController
 
