@@ -39,7 +39,7 @@
                                     left:0px;
                                     overflow: hidden;
                                     transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
-                                    transition-duration: 2000ms;
+                                    transition-duration: 500ms;
                                 }
                                 
                                 .nav{
@@ -90,7 +90,7 @@
         </div>
         <div class="clear"></div>
         <script type="text/javascript">
-            angular.module('app', []).controller('controller', ['$scope','$window','$timeout',function($scope,$window,$timeout) {
+            angular.module('app', ['ngTouch']).controller('controller', ['$scope','$window','$timeout',function($scope,$window,$timeout,$swipe) {
                 //自适应用
                 $scope.scale = $window.innerWidth/750;
                 $window.onresize=function(){
@@ -101,13 +101,13 @@
                 $scope.Roll=0;
                 $scope.rollLeft=function(){
                     console.log("left")
-                    if($scope.Roll>=1){
+                    if($scope.Roll>-($scope.data.length-3)){
                         $scope.Roll--;
                     }
                 }
                 $scope.rollRight=function(){
                     console.log("right")
-                    if($scope.Roll<$scope.data.length){
+                    if($scope.Roll<=-1){
                         $scope.Roll++;
                     }
                 }
