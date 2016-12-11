@@ -41,7 +41,24 @@
                                     transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
                                     transition-duration: 300ms;
                                 }
-                                
+                                .open .iconfont{
+                                    position: absolute;
+                                    top: 0px;
+                                    left: 20px;
+                                    font-size: 30px;
+                                    line-height: 88px;
+                                    color: #abadaf;
+                                }
+                                .open input{
+                                    position: absolute;
+                                    top: 0px;
+                                    left: 0px;
+                                    width: 690px;
+                                    height: 88px;
+                                    line-height: 88px;
+                                    font-size: 28px;
+                                    text-indent: 60px;
+                                }
                                 .nav{
                                     width:156px;
                                     height:88px;
@@ -58,6 +75,18 @@
                                     line-height: 98px;
                                     color: #5b99ec;
                                     font-size: 36px;
+                                }
+                                .cancel{
+                                    width:100px;
+                                    height:88px;
+                                    line-height: 88px;
+                                    color: #5b99ec;
+                                    font-size: 36px;
+                                    position: absolute;
+                                    top: 0px;
+                                    right: 0px;
+                                    background-color: #fff;
+                                    z-index: 3;
                                 }
                                 #maskLeft{
                                     position: absolute;
@@ -93,7 +122,7 @@
         <div id="all" style="-webkit-transform:scale({{scale}});transform:scale({{scale}});">
             <div id="main">
             	<div class="space"></div>
-            	<div class="left" ng-swipe-left="rollLeft()"  ng-swipe-right="rollRight()">
+            	<div ng-if="!open" class="left" ng-swipe-left="rollLeft()"  ng-swipe-right="rollRight()">
                     <img src="images/navLeft.png" id="maskLeft"/>
                     <img src="images/navRight.png" id="maskRight"/>
                     <div class="leftRoll">
@@ -101,8 +130,14 @@
                         <div class="hl"></div>
                     </div>
                 </div>
-                <div class="right iconfont">&#xe658;</div>
-                
+                <div ng-if="!open" class="right iconfont" ng-click="toggle()">&#xe658;</div>
+                <div ng-if="open" class="left open">
+                    <div class="iconfont">&#xe63d;</div>
+                    <input ng-model="searchData" ng-focus="searching()"/>
+                </div>
+                <div ng-if="open&&!serchMode" class="right iconfont" ng-click="toggle()">&#xe659;</div>
+                <button ng-if="open&&serchMode" class="cancel" ng-click="cancel()">取消</button>
+                <div class="clear"></div>
             </div>
         </div>
         <div class="clear"></div>
@@ -114,6 +149,10 @@
                    $scope.scale = $window.innerWidth/750;
                     $scope.getH = document.getElementById('all').clientHeight*$scope.scale;
                     $scope.$apply();
+                }
+                $scope.open=false;
+                $scope.toggle=function(){
+                    $scope.open=!$scope.open;
                 }
                 $scope.hl=0;
                 $scope.changeHl=function(index){
@@ -133,6 +172,15 @@
                 }
                 //数据
                 $scope.data=[{id:"001",name:"冠心病"},{id:"002",name:"冠心病"},{id:"003",name:"冠心病"},{id:"004",name:"冠心病"},{id:"005",name:"冠心病"},{id:"006",name:"冠心病"},{id:"007",name:"冠心病"},{id:"008",name:"冠心病"},{id:"009",name:"冠心病"},{id:"010",name:"冠心病"},{id:"011",name:"冠心病"},{id:"011",name:"冠心病"}];
+                $scope.searchData="";
+                $scope.serchMode=false;
+                $scope.searching=function(){
+                    $scope.serchMode=true;
+                }
+                $scope.cancel=function(){
+                    $scope.serchMode=false;
+                    $scope.searchData="";
+                }
                 $timeout(function(){
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
                 },300);

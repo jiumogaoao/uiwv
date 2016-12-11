@@ -109,18 +109,55 @@
                                             width: 750px;
                                             float: left;
                                         }
+                                        .typeSearch{
+                                            width: 750px;
+                                            position: absolute;
+                                            top: 0px;
+                                            left: 0px;
+                                            z-index: 3;
+                                            background-color: #eeeeee;
+                                            min-height: 1000px;
+                                            transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+                                    transition-duration: 300ms;
+                                    -webkit-transform: translateY(-{{open&&!serchMode?0:100}}%);
+                                       -moz-transform: translateY(-{{open&&!serchMode?0:100}}%);
+                                        -ms-transform: translateY(-{{open&&!serchMode?0:100}}%);
+                                         -o-transform: translateY(-{{open&&!serchMode?0:100}}%);
+                                            transform: translateY(-{{open&&!serchMode?0:100}}%); 
+                                        }
+                                        .typePoint{
+                                            margin-top:10px;
+                                            margin-right: 10px;
+                                            width: 175px;
+                                            height: 50px;
+                                            text-align: center;
+                                            line-height: 50px;
+                                            background-color: #fff;
+                                            position: relative;
+                                            left: 10px; 
+                                            float: left;   
+                                        }
+                                        .typePoint.nm{
+                                            margin-right:0px; 
+                                        }
                                 </style>
     </head>
     <body style="height: {{getH}}px;">
         <div id="all" style="-webkit-transform:scale({{scale}});transform:scale({{scale}});">
             <div id="main">
-                <div class="rollFrame" ng-swipe-left="rollLeft()"  ng-swipe-right="rollRight()">
+                <div class="searching" ng-if="open&&serchMode"></div>
+                <div class="typeSearch">
+                    <div class="space"></div>
+                    <button ng-repeat="list in data track by $index" class="typePoint {{($index+1)%4?'':'nm'}}">{{$index}}{{list.title}}</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="rollFrame" ng-if="!serchMode" ng-swipe-left="rollLeft()"  ng-swipe-right="rollRight()">
                     <div class="roll">
                         <div class="listFrame" ng-repeat="list in data track by $index">
                             <div class="space"></div>
                             <div class="list" ng-if="$index==hl">
-                                <div class="top">
-                                    <div class="dsc">2016全球精准医疗（中国）峰会圆满召开！</div>
+                                <div class="top" style="background-image: url('{{list.icon}}')">
+                                    <div class="dsc">{{list.dsc}}</div>
                                 </div>
                                 <div ng-repeat="n in list.list track by $index" class="point point{{n.type}}"  ng-switch="n.type">
                                     <div ng-switch-when="0">
@@ -171,78 +208,89 @@
                         $scope.hl--;
                     }
                 }
+                $scope.open=false;
+                $scope.toggle=function(){
+                    $scope.open=!$scope.open;
+                }
+                $scope.serchMode=false;
+                $scope.searching=function(){
+                    $scope.serchMode=true;
+                }
+                $scope.cancel=function(){
+                    $scope.serchMode=false;
+                }
                 $scope.data=[
-                    {id:'001',title:'冠心病',list:[
+                    {id:'001',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'002',title:'冠心病',list:[
+                    {id:'002',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'003',title:'冠心病',list:[
+                    {id:'003',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'004',title:'冠心病',list:[
+                    {id:'004',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'005',title:'冠心病',list:[
+                    {id:'005',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'006',title:'冠心病',list:[
+                    {id:'006',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'007',title:'冠心病',list:[
+                    {id:'007',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'008',title:'冠心病',list:[
+                    {id:'008',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'009',title:'冠心病',list:[
+                    {id:'009',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'010',title:'冠心病',list:[
+                    {id:'010',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]},
-                    {id:'011',title:'冠心病',list:[
+                    {id:'011',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
