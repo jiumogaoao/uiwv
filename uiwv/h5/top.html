@@ -27,11 +27,12 @@
                                     overflow:hidden;
                                 }
                                 .leftRoll{
-                                    width:100%;
+                                    width:200%;
                                     height:88px;
                                     position:absolute;
                                     top:0px;
                                     left:0px;
+                                    overflow: hidden;
                                 }
                                 .nav{
                                     width:156px;
@@ -46,6 +47,21 @@
                                     float:left;
                                     width:60px;
                                     height:88px;
+                                    line-height: 98px;
+                                    color: #5b99ec;
+                                    font-size: 36px;
+                                }
+                                #maskLeft{
+                                    position: absolute;
+                                    top: 0px;
+                                    left: 0px;
+                                    z-index: 3;
+                                }
+                                #maskRight{
+                                    position: absolute;
+                                    top: 0px;
+                                    right: 0px;
+                                    z-index: 3;
                                 }
                                 </style>
     </head>
@@ -54,6 +70,8 @@
             <div id="main">
             	<div class="space"></div>
             	<div class="left">
+                    <img src="images/navLeft.png" id="maskLeft"/>
+                    <img src="images/navRight.png" id="maskRight"/>
                     <div class="leftRoll">
                         <div class="nav">冠心病</div>
                         <div class="nav">冠心病</div>
