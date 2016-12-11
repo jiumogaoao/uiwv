@@ -27,13 +27,21 @@
                                     overflow:hidden;
                                 }
                                 .leftRoll{
-                                    width:200%;
+                                    -webkit-transform: translateX({{Roll*186}}px);
+                                       -moz-transform: translateX({{Roll*186}}px);
+                                        -ms-transform: translateX({{Roll*186}}px);
+                                         -o-transform: translateX({{Roll*186}}px);
+                                            transform: translateX({{Roll*186}}px);
+                                    width:{{data.length*186}}px;
                                     height:88px;
                                     position:absolute;
                                     top:0px;
                                     left:0px;
                                     overflow: hidden;
+                                    transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+                                    transition-duration: 2000ms;
                                 }
+                                
                                 .nav{
                                     width:156px;
                                     height:88px;
@@ -69,15 +77,11 @@
         <div id="all" style="-webkit-transform:scale({{scale}});transform:scale({{scale}});">
             <div id="main">
             	<div class="space"></div>
-            	<div class="left">
+            	<div class="left" ng-swipe-left="rollLeft()"  ng-swipe-right="rollRight()">
                     <img src="images/navLeft.png" id="maskLeft"/>
                     <img src="images/navRight.png" id="maskRight"/>
                     <div class="leftRoll">
-                        <div class="nav">冠心病</div>
-                        <div class="nav">冠心病</div>
-                        <div class="nav">冠心病</div>
-                        <div class="nav">冠心病</div>
-                        <div class="nav">冠心病</div>
+                        <div class="nav" ng-repeat="n in data track by $index">冠心病</div>
                     </div>
                 </div>
                 <div class="right iconfont">&#xe658;</div>
@@ -94,8 +98,21 @@
                     $scope.getH = document.getElementById('all').clientHeight*$scope.scale;
                     $scope.$apply();
                 }
+                $scope.Roll=0;
+                $scope.rollLeft=function(){
+                    console.log("left")
+                    if($scope.Roll>=1){
+                        $scope.Roll--;
+                    }
+                }
+                $scope.rollRight=function(){
+                    console.log("right")
+                    if($scope.Roll<$scope.data.length){
+                        $scope.Roll++;
+                    }
+                }
                 //数据
-                $scope.data={userName:"",key:""};
+                $scope.data=[{id:"001",name:"冠心病"},{id:"002",name:"冠心病"},{id:"003",name:"冠心病"},{id:"004",name:"冠心病"},{id:"005",name:"冠心病"},{id:"006",name:"冠心病"},{id:"007",name:"冠心病"},{id:"008",name:"冠心病"},{id:"009",name:"冠心病"},{id:"010",name:"冠心病"},{id:"011",name:"冠心病"},{id:"011",name:"冠心病"}];
                 $timeout(function(){
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
                 },300);
