@@ -71,6 +71,22 @@
                                     right: 0px;
                                     z-index: 3;
                                 }
+                                .hl{
+                                    width: 157px;
+                                    height: 6px;
+                                    border-radius: 6px;
+                                    background-color: #5b99ec;
+                                    position: absolute;
+                                    left: 30px;
+                                    bottom: 0px;
+                                    transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+                                    transition-duration: 500ms;
+                                    -webkit-transform: translateX({{hl*186}}px);
+                                       -moz-transform: translateX({{hl*186}}px);
+                                        -ms-transform: translateX({{hl*186}}px);
+                                         -o-transform: translateX({{hl*186}}px);
+                                            transform: translateX({{hl*186}}px); 
+                                }
                                 </style>
     </head>
     <body style="height: {{getH}}px;">
@@ -81,7 +97,8 @@
                     <img src="images/navLeft.png" id="maskLeft"/>
                     <img src="images/navRight.png" id="maskRight"/>
                     <div class="leftRoll">
-                        <div class="nav" ng-repeat="n in data track by $index">冠心病</div>
+                        <div class="nav" ng-repeat="n in data track by $index" ng-click="changeHl($index)">冠心病</div>
+                        <div class="hl"></div>
                     </div>
                 </div>
                 <div class="right iconfont">&#xe658;</div>
@@ -98,15 +115,18 @@
                     $scope.getH = document.getElementById('all').clientHeight*$scope.scale;
                     $scope.$apply();
                 }
+                $scope.hl=0;
+                $scope.changeHl=function(index){
+                    console.log(index)
+                    $scope.hl=index;
+                }
                 $scope.Roll=0;
                 $scope.rollLeft=function(){
-                    console.log("left")
                     if($scope.Roll>-($scope.data.length-3)){
                         $scope.Roll--;
                     }
                 }
                 $scope.rollRight=function(){
-                    console.log("right")
                     if($scope.Roll<=-1){
                         $scope.Roll++;
                     }
