@@ -89,34 +89,64 @@
                                         .point1 .icon.last{
                                             margin-right:0px;  
                                         }
+                                        .rollFrame{
+                                            width: 750px;
+                                            position: relative;
+                                            overflow: hidden;
+                                        }
+                                        .roll{
+                                            position: relative;
+                                            width: {{data.length*750}}px;
+                                            transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+                                    transition-duration: 300ms;
+                                    -webkit-transform: translateX(-{{hl*750}}px);
+                                       -moz-transform: translateX(-{{hl*750}}px);
+                                        -ms-transform: translateX(-{{hl*750}}px);
+                                         -o-transform: translateX(-{{hl*750}}px);
+                                            transform: translateX(-{{hl*750}}px); 
+                                        }
+                                        .listFrame{
+                                            width: 750px;
+                                            float: left;
+                                        }
                                 </style>
     </head>
     <body style="height: {{getH}}px;">
         <div id="all" style="-webkit-transform:scale({{scale}});transform:scale({{scale}});">
             <div id="main">
-            	<div class="space"></div>
-            	<div class="top">
-                    <div class="dsc">2016全球精准医疗（中国）峰会圆满召开！</div>
-                </div>
-                <div ng-repeat="n in data track by $index" class="point point{{n.type}}"  ng-switch="n.type">
-                    <div ng-switch-when="0">
-                        <div class="left">
-                            <div class="title">{{n.title}}</div>
-                            <div class="praise"><span class="iconfont">&#xe654;</span> {{n.praise}}</div>
-                            <div class="date">{{n.time}}</div>
+                <div class="rollFrame" ng-swipe-left="rollLeft()"  ng-swipe-right="rollRight()">
+                    <div class="roll">
+                        <div class="listFrame" ng-repeat="list in data track by $index">
+                            <div class="space"></div>
+                            <div class="list" ng-if="$index==hl">
+                                <div class="top">
+                                    <div class="dsc">2016全球精准医疗（中国）峰会圆满召开！</div>
+                                </div>
+                                <div ng-repeat="n in list.list track by $index" class="point point{{n.type}}"  ng-switch="n.type">
+                                    <div ng-switch-when="0">
+                                        <div class="left">
+                                            <div class="title">{{n.title}}</div>
+                                            <div class="praise"><span class="iconfont">&#xe654;</span> {{n.praise}}</div>
+                                            <div class="date">{{n.time}}</div>
+                                        </div>
+                                        <div class="right" style="background-image: url('{{n.icon}}')"></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div ng-switch-when="1">
+                                        <div class="title">{{n.title}}</div>
+                                        <div class="clear"></div>
+                                        <div ng-repeat="i in n.icon track by $index" class="icon {{$index==2?'last':''}}" style="background-image: url('{{i}}')"></div>
+                                        <div class="clear"></div>
+                                        <div class="praise"><span class="iconfont">&#xe654;</span>{{n.praise}}</div>
+                                        <div class="date">{{n.time}}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="right" style="background-image: url('{{n.icon}}')"></div>
                         <div class="clear"></div>
-                    </div>
-                    <div ng-switch-when="1">
-                        <div class="title">{{n.title}}</div>
-                        <div class="clear"></div>
-                        <div ng-repeat="i in n.icon track by $index" class="icon {{$index==2?'last':''}}" style="background-image: url('{{i}}')"></div>
-                        <div class="clear"></div>
-                        <div class="praise"><span class="iconfont">&#xe654;</span>{{n.praise}}</div>
-                        <div class="date">{{n.time}}</div>
                     </div>
                 </div>
+                
             </div>
         </div>
         <div class="clear"></div>
@@ -130,12 +160,95 @@
                     $scope.$apply();
                 }
                 //数据
+                $scope.hl=0;
+                $scope.rollLeft=function(){
+                    if($scope.hl<$scope.data.length-1){
+                        $scope.hl++;
+                    }
+                }
+                $scope.rollRight=function(){
+                    if($scope.hl>0){
+                        $scope.hl--;
+                    }
+                }
                 $scope.data=[
-                {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
-                {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
-                {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
-                {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
-                {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    {id:'001',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'002',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'003',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'004',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'005',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'006',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'007',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'008',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'009',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'010',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]},
+                    {id:'011',title:'冠心病',list:[
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                    {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
+                    ]}
                 ];
                 $timeout(function(){
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
