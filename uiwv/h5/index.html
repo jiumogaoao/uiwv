@@ -6,6 +6,7 @@
                     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
                         <title></title>
                             <link href="css/main.css" rel="stylesheet" rev="stylesheet" type="text/css">
+                            <link rel="stylesheet" href="font/iconfont.css">
                                 <script type="text/javascript" src="js/angular.min.js"></script>
                                 <script type="text/javascript" src="js/angular-touch.min.js"></script>
                                 <style type="text/css">
@@ -30,6 +31,64 @@
                                             font-size: 32px;
                                             text-indent: 20px;
                                         }
+                                        .point0{
+                                            height: 150px;
+                                            width: 710px;
+                                            margin: auto;
+                                            margin-top:50px; 
+                                        }
+                                        .point0 .left{
+                                            float: left;
+                                            width: 488px;
+                                            height: 150px;
+                                            position: relative;
+                                        }
+                                        .point0 .right{
+                                            float: left;
+                                            height: 150px;
+                                            width: 222px;
+                                        }
+                                        .point0 .title{
+                                            font-size: 28px;
+                                            width: 458px;
+                                        }
+                                        .point .praise{
+                                            position: absolute;
+                                            left: 0px;
+                                            bottom: 10px;
+                                            color: #abadaf;
+                                            font-size: 22px;
+                                        }
+                                        .point .praise span{
+                                            font-size: 34px;
+                                        }
+                                        .point .date{
+                                            position: absolute;
+                                            right: 0px;
+                                            bottom: 10px;
+                                            color: #abadaf;
+                                            font-size: 22px;
+                                        }
+                                        .point1{
+                                            height: 235px;
+                                            width: 710px;
+                                            margin: auto;
+                                            margin-top:50px; 
+                                            position: relative;
+                                        }
+                                        .point1 .title{
+                                            font-size: 28px;
+                                        }
+                                        .point1 .icon{
+                                            float: left;
+                                            width: 222px;
+                                            height: 150px;
+                                            margin-top:13px;
+                                            margin-right:22px;  
+                                        }
+                                        .point1 .icon.last{
+                                            margin-right:0px;  
+                                        }
                                 </style>
     </head>
     <body style="height: {{getH}}px;">
@@ -39,8 +98,24 @@
             	<div class="top">
                     <div class="dsc">2016全球精准医疗（中国）峰会圆满召开！</div>
                 </div>
-                <div ng-repeat="n in data" class="point ">
-                    
+                <div ng-repeat="n in data track by $index" class="point point{{n.type}}"  ng-switch="n.type">
+                    <div ng-switch-when="0">
+                        <div class="left">
+                            <div class="title">{{n.title}}</div>
+                            <div class="praise"><span class="iconfont">&#xe654;</span> {{n.praise}}</div>
+                            <div class="date">{{n.time}}</div>
+                        </div>
+                        <div class="right" style="background-image: url('{{n.icon}}')"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div ng-switch-when="1">
+                        <div class="title">{{n.title}}</div>
+                        <div class="clear"></div>
+                        <div ng-repeat="i in n.icon track by $index" class="icon {{$index==2?'last':''}}" style="background-image: url('{{i}}')"></div>
+                        <div class="clear"></div>
+                        <div class="praise"><span class="iconfont">&#xe654;</span>{{n.praise}}</div>
+                        <div class="date">{{n.time}}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,6 +135,7 @@
                 {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
                 {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
                 {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                 ];
                 $timeout(function(){
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
