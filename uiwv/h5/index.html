@@ -1,4 +1,4 @@
-<html ng-app="app" ng-controller="controller">
+<html ng-app="app" ng-controller="controller" style="height: {{getH}}px;">
     <head>
         <meta charset="utf-8">
             <meta name="format-detection" content="telephone=no">
@@ -13,47 +13,40 @@
                                 			width: 1px;
                                 			height: 1px;
                                 		}
-                                		.input_module{
-                                			width: 700px;
-                                			height: 100px;
-                                			margin: auto;
-                                			margin-top: 20px;
-                                			background-color: #fff;
-                                			position: relative;
-                                		}
-                                		.input_module input{
-                                			position: absolute;
-                                			top: 0px;
-                                			left: 0px;
-                                			width: 100%;
-                                			height: 100%;
-                                			line-height: 100px;
-                                			font-size: 80px;
-                                			text-align: center;
-                                		}
-                                		.buttonL{
-                                			width: 700px;
-                                			height: 100px;
-                                			background-color: blue;
-                                			color: #fff;
-                                			font-size: 80px;
-                                			line-height: 100px;
-                                			text-align: center;
-                                			margin: auto;
-                                			margin-top: 20px;
-                                		}
+                                		.top{
+                                            width: 750px;
+                                            height: 369px;
+                                            position: relative;
+                                        }
+                                        .top .dsc{
+                                            width: 750px;
+                                            position: absolute;
+                                            left: 0px;
+                                            bottom: 0px;
+                                            background-color: rgba(0,0,0,0.3);
+                                            color: #fff;
+                                            line-height: 70px;
+                                            height: 70px;
+                                            font-size: 32px;
+                                            text-indent: 20px;
+                                        }
                                 </style>
     </head>
     <body style="height: {{getH}}px;">
         <div id="all" style="-webkit-transform:scale({{scale}});transform:scale({{scale}});">
             <div id="main">
             	<div class="space"></div>
-            	<button class="buttonL" ng-click="send()">登录</button>
+            	<div class="top">
+                    <div class="dsc">2016全球精准医疗（中国）峰会圆满召开！</div>
+                </div>
+                <div ng-repeat="n in data" class="point ">
+                    
+                </div>
             </div>
         </div>
         <div class="clear"></div>
         <script type="text/javascript">
-            angular.module('app', []).controller('controller', ['$scope','$window','$timeout',function($scope,$window,$timeout) {
+            angular.module('app', ['ngTouch']).controller('controller', ['$scope','$window','$timeout',function($scope,$window,$timeout) {
                 //自适应用
                 $scope.scale = $window.innerWidth/750;
                 $window.onresize=function(){
@@ -62,7 +55,12 @@
                     $scope.$apply();
                 }
                 //数据
-                $scope.data={userName:"",key:""};
+                $scope.data=[
+                {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
+                {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]},
+                ];
                 $timeout(function(){
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
                 },300);
