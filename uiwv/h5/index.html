@@ -202,23 +202,26 @@
                     if($scope.hl<$scope.data.length-1){
                         $scope.hl++;
                     }
+                                                                         window.webkit.messageHandlers.ZTX.postMessage({
+                                                                                                                                                          fn:"bridge",
+                                                                                                                       to:"topView",
+                                                                                                                       action:"hl("+$scope.hl+")"
+                                                                                                                       
+                                                                                                                       });
                 }
                 $scope.rollRight=function(){
                     if($scope.hl>0){
                         $scope.hl--;
                     }
+                                                                         window.webkit.messageHandlers.ZTX.postMessage({
+                                                                                                                       fn:"bridge",
+                                                                                                                       to:"topView",
+                                                                                                                       action:"hl("+$scope.hl+")"
+                                                                                                                       
+                                                                                                                       });
                 }
                 $scope.open=false;
-                $scope.toggle=function(){
-                    $scope.open=!$scope.open;
-                }
                 $scope.serchMode=false;
-                $scope.searching=function(){
-                    $scope.serchMode=true;
-                }
-                $scope.cancel=function(){
-                    $scope.serchMode=false;
-                }
                 $scope.data=[
                     {id:'001',title:'冠心病',icon:"#",dsc:"2016全球精准医疗（中国）峰会圆满召开！",list:[
                     {id:"",type:0,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:"#"},
@@ -298,13 +301,31 @@
                     {id:"",type:1,title:"健康医疗科技精准对接会暨陕西省国家临床医学研究中心",praise:0,time:"2016/12/06",icon:["#","#","#"]}
                     ]}
                 ];
+                                                                         //原生调用
+                                                                         window.hl=function(num){
+                                                                         $scope.hl=num;
+                                                                         $scope.$apply();
+                                                                         }
+                                                                         window.toggle=function(){
+                                                                         $scope.open=!$scope.open;
+                                                                         $scope.$apply();
+                                                                         }
+                                                                         window.searching=function(){
+                                                                         $scope.serchMode=true;
+                                                                         $scope.$apply();
+                                                                         }
+                                                                         window.cancel=function(){
+                                                                         $scope.serchMode=false;
+                                                                         $scope.$apply();
+                                                                         }
+                                                                         window.set=function(data){
+                                                                         $scope.data=data;
+                                                                         $scope.$apply();
+                                                                         }
                 $timeout(function(){
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
                 },300);
-                                                                $scope.send=function(){
-                                                                alert(2);
-                                                                window.webkit.messageHandlers.AppModel.postMessage({body: '1'});
-                                                                }
+                                                                
             }]);
             var alertA=function(num){
                 alert(num);

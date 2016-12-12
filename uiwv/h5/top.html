@@ -126,7 +126,7 @@
                     <img src="images/navLeft.png" id="maskLeft"/>
                     <img src="images/navRight.png" id="maskRight"/>
                     <div class="leftRoll">
-                        <div class="nav" ng-repeat="n in data track by $index" ng-click="changeHl($index)">冠心病</div>
+                        <div class="nav" ng-repeat="n in data track by $index" ng-click="changeHl($index)">{{n.title}}</div>
                         <div class="hl"></div>
                     </div>
                 </div>
@@ -153,11 +153,22 @@
                 $scope.open=false;
                 $scope.toggle=function(){
                     $scope.open=!$scope.open;
+                                                                         window.webkit.messageHandlers.ZTX.postMessage({
+                                                                                                                       fn:"bridge",
+                                                                                                                       to:"webView",
+                                                                                                                       action:"toggle()"
+                                                                                                                       
+                                                                                                                       });
                 }
                 $scope.hl=0;
                 $scope.changeHl=function(index){
-                    console.log(index)
                     $scope.hl=index;
+                                                                         window.webkit.messageHandlers.ZTX.postMessage({
+                                                                                                                                                    fn:"bridge",
+                                                                                                                       to:"webView",
+                                                                                                                       action:"hl("+index+")"
+                                                                                                                       
+                                                                         });
                 }
                 $scope.Roll=0;
                 $scope.rollLeft=function(){
@@ -171,16 +182,38 @@
                     }
                 }
                 //数据
-                $scope.data=[{id:"001",name:"冠心病"},{id:"002",name:"冠心病"},{id:"003",name:"冠心病"},{id:"004",name:"冠心病"},{id:"005",name:"冠心病"},{id:"006",name:"冠心病"},{id:"007",name:"冠心病"},{id:"008",name:"冠心病"},{id:"009",name:"冠心病"},{id:"010",name:"冠心病"},{id:"011",name:"冠心病"},{id:"011",name:"冠心病"}];
+                $scope.data=[{id:"001",title:"冠心病"},{id:"002",title:"冠心病"},{id:"003",title:"冠心病"},{id:"004",title:"冠心病"},{id:"005",title:"冠心病"},{id:"006",title:"冠心病"},{id:"007",title:"冠心病"},{id:"008",title:"冠心病"},{id:"009",title:"冠心病"},{id:"010",title:"冠心病"},{id:"011",title:"冠心病"},{id:"011",title:"冠心病"}];
                 $scope.searchData="";
                 $scope.serchMode=false;
                 $scope.searching=function(){
                     $scope.serchMode=true;
+                                                                         window.webkit.messageHandlers.ZTX.postMessage({
+                                                                                                                       fn:"bridge",
+                                                                                                                       to:"webView",
+                                                                                                                       action:"searching()"
+                                                                                                                       
+                                                                                                                       });
                 }
                 $scope.cancel=function(){
                     $scope.serchMode=false;
                     $scope.searchData="";
+                                                                         window.webkit.messageHandlers.ZTX.postMessage({
+                                                                                                                       fn:"bridge",
+                                                                                                                       to:"webView",
+                                                                                                                       action:"cancel()"
+                                                                                                                       
+                                                                                                                       });
                 }
+                //原生调用
+                window.hl=function(num){
+                                                                         $scope.hl=num;
+                                                                         $scope.Roll=-1*($scope.hl-1);
+                                                                         $scope.$apply();
+                                                                         }
+                                                                         window.set=function(data){
+                                                                         $scope.data=data;
+                                                                         $scope.$apply();
+                                                                         }
                 $timeout(function(){
                    $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
                 },300);

@@ -12,6 +12,7 @@
 @property (nonatomic, strong) WKWebView *topView;
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) NSString *data;
 @end
 
 @implementation ViewController
@@ -20,8 +21,9 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.data=@"";
     //头部
-    WKWebViewConfiguration *config = [WKWebView config:@"AppModel" target:self];
+    WKWebViewConfiguration *config = [WKWebView config:@"ZTX" target:self];
 
     CGRect frame=CGRectMake(0,20,self.view.bounds.size.width,88*[self ReSize]);
     self.topView = [[WKWebView alloc] initWithFrame:frame
@@ -63,7 +65,7 @@
     // 加载完成
     if (!self.webView.loading) {
         //OC调JS
-        [self.webView callJS:@"alertA(100)"];
+        //[self.webView callJS:@"alertA(100)"];
     }
 }
 //替换alert
@@ -81,10 +83,23 @@
 #pragma mark - WKScriptMessageHandler
 - (void)userContentController:(WKUserContentController *)userContentController
       didReceiveScriptMessage:(WKScriptMessage *)message {
-    if ([message.name isEqualToString:@"AppModel"]) {
+    if ([message.name isEqualToString:@"ZTX"]) {
         // 打印所传过来的参数，只支持NSNumber, NSString, NSDate, NSArray,
         // NSDictionary, and NSNull类型
         NSLog(@"%@", message.body);
+        NSDictionary *data=message.body;
+        
+        NSString *fn=[data objectForKey:@"fn"];
+        
+        if([fn isEqual: @"bridge"]){
+            NSString *to=[data objectForKey:@"to"];
+            NSString *action=[data objectForKey:@"action"];
+            if([to isEqual: @"webView"]){
+                [self.webView callJS:action];
+            }else{
+                [self.topView callJS:action];
+            }
+        }
     }
 }
 //请求返回
