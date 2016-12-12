@@ -68,6 +68,9 @@
                                     margin-left:30px;
                                     font-size:30px;
                                 }
+                                .nav.hlNav{
+                                color: #5b99ec;
+                                }
                                 .right{
                                     float:left;
                                     width:60px;
@@ -126,17 +129,16 @@
                     <img src="images/navLeft.png" id="maskLeft"/>
                     <img src="images/navRight.png" id="maskRight"/>
                     <div class="leftRoll">
-                        <div class="nav" ng-repeat="n in data track by $index" ng-click="changeHl($index)">{{n.title}}</div>
+                        <div ng-repeat="n in data track by $index" class="nav {{$index==hl?'hlNav':''}}" ng-click="changeHl($index)">{{n.title}}</div>
                         <div class="hl"></div>
                     </div>
                 </div>
                 <div ng-if="!open" class="right iconfont" ng-click="toggle()">&#xe658;</div>
                 <div ng-if="open" class="left open">
                     <div class="iconfont">&#xe63d;</div>
-                    <input ng-model="searchData" ng-focus="searching()"/>
+                    <input ng-model="searchData"/>
                 </div>
-                <div ng-if="open&&!serchMode" class="right iconfont" ng-click="toggle()">&#xe659;</div>
-                <button ng-if="open&&serchMode" class="cancel" ng-click="cancel()">取消</button>
+                <div ng-if="open" class="right iconfont" ng-click="toggle()">&#xe659;</div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -184,26 +186,6 @@
                 //数据
                 $scope.data=[];
                 $scope.searchData="";
-                $scope.serchMode=false;
-                $scope.searching=function(){
-                    $scope.serchMode=true;
-                                                                         window.webkit.messageHandlers.ZTX.postMessage({
-                                                                                                                       fn:"bridge",
-                                                                                                                       to:"webView",
-                                                                                                                       action:"searching()"
-                                                                                                                       
-                                                                                                                       });
-                }
-                $scope.cancel=function(){
-                    $scope.serchMode=false;
-                    $scope.searchData="";
-                                                                         window.webkit.messageHandlers.ZTX.postMessage({
-                                                                                                                       fn:"bridge",
-                                                                                                                       to:"webView",
-                                                                                                                       action:"cancel()"
-                                                                                                                       
-                                                                                                                       });
-                }
                 //原生调用
                 window.hl=function(num){
                                                                          $scope.hl=num;
@@ -212,6 +194,10 @@
                                                                          }
                                                                          window.set=function(data){
                                                                          $scope.data=data;
+                                                                         $scope.$apply();
+                                                                         }
+                                                                         window.toggle=function(){
+                                                                         $scope.open=!$scope.open;
                                                                          $scope.$apply();
                                                                          }
                 $timeout(function(){

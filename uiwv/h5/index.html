@@ -230,6 +230,13 @@
                                                                                                                        action:"hl("+index+")"
                                                                                                                        
                                                                                                                        });
+                                                                         
+                                                                         window.webkit.messageHandlers.ZTX.postMessage({
+                                                                                                                       fn:"bridge",
+                                                                                                                       to:"topView",
+                                                                                                                       action:"toggle()"
+                                                                                                                       
+                                                                                                                       });
 					}
                 $scope.rollLeft=function(){
                     if($scope.hl<$scope.data.length-1){
@@ -253,8 +260,12 @@
                                                                                                                        
                                                                                                                        });
                 }
-                $scope.open=true;
+
 				$scope.history=["搜索历史0","搜索历史1","搜索历史2","搜索历史3","搜索历史4"];
+
+                $scope.open=false;
+                $scope.serchMode=false;
+
                 $scope.data=[];
                                                                          //原生调用
                                                                          window.hl=function(num){
