@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F297C851DFA4ED300B51B0D /* RequestH5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F297C841DFA4ED300B51B0D /* RequestH5.m */; };
+		2F297C871DFAB84300B51B0D /* font in Resources */ = {isa = PBXBuildFile; fileRef = 2F297C861DFAB84300B51B0D /* font */; };
 		2F6E35231DF104160027FE0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E35221DF104160027FE0A /* main.m */; };
 		2F6E35261DF104160027FE0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E35251DF104160027FE0A /* AppDelegate.m */; };
 		2F6E35291DF104160027FE0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E35281DF104160027FE0A /* ViewController.m */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		2F297C831DFA4ED300B51B0D /* RequestH5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestH5.h; sourceTree = "<group>"; };
 		2F297C841DFA4ED300B51B0D /* RequestH5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestH5.m; sourceTree = "<group>"; };
+		2F297C861DFAB84300B51B0D /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		2F6E351E1DF104160027FE0A /* uiwv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uiwv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F6E35221DF104160027FE0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F6E35241DF104160027FE0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
