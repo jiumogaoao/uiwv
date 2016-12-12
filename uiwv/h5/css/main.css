@@ -53,30 +53,26 @@ input,textarea{
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
 color: #adabaf; 
 font-family:"Microsoft YaHei";
-font-size:80px;
-line-height: 100px;
-text-align: center;
+font-size:28px;
+line-height: 74px;
 } 
 input:-moz-placeholder, textarea:-moz-placeholder { 
 color: #adabaf; 
 font-family:"Microsoft YaHei";
-font-size:80px;
-line-height: 100px;
-text-align: center;
+font-size:28px;
+line-height: 74px;
 } 
 input::-moz-placeholder, textarea::-moz-placeholder { 
 color: #adabaf; 
 font-family:"Microsoft YaHei";
-font-size:80px;
-line-height: 100px;
-text-align: center;
+font-size:28px;
+line-height: 74px;
 } 
 input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
 color: #adabaf; 
 font-family:"Microsoft YaHei";
-font-size:80px;
-line-height: 100px;
-text-align: center;
+font-size:28px;
+line-height: 74px;
 } 
 img{
   display:block;
