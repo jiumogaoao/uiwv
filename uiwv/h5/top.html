@@ -158,22 +158,12 @@
                 $scope.open=false;
                 $scope.toggle=function(){
                     $scope.open=!$scope.open;
-                                                                         window.webkit.messageHandlers.ZTX.postMessage({
-                                                                                                                       fn:"bridge",
-                                                                                                                       to:"webView",
-                                                                                                                       action:"toggle()"
-                                                                                                                       
-                                                                                                                       });
+                                                                         window.gb.bridge("webView","toggle()");
                 }
                 $scope.hl=0;
                 $scope.changeHl=function(index){
                     $scope.hl=index;
-                                                                         window.webkit.messageHandlers.ZTX.postMessage({
-                                                                                                                                                    fn:"bridge",
-                                                                                                                       to:"webView",
-                                                                                                                       action:"hl("+index+")"
-                                                                                                                       
-                                                                         });
+                                                                         window.gb.bridge("webView","hl("+index+")");
                 }
                 $scope.Roll=0;
                 $scope.rollLeft=function(){
