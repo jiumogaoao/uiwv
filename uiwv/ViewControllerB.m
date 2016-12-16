@@ -33,7 +33,7 @@
     
     
     //////////////////////
-    webViewh5B = [[h5 alloc] init:self frame:CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20 -88*ReSize) url:@"index" callback:@"callbackB"];
+    webViewh5B = [[h5 alloc] init:self frame:CGRectMake(0, 20+88*ReSize, self.view.bounds.size.width, self.view.bounds.size.height - 20 -88*ReSize) url:@"index" callback:@"callbackB"];
     webViewB = [webViewh5B getView];
     [self.view addSubview:webViewB];
     }
@@ -53,9 +53,9 @@
 }
 */
 -(void)callbackA{
-    [webViewh5 call:[NSString stringWithFormat:@"set(%@)",_data]];
+    [webViewh5 call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},300)",_data]];
 }
 -(void)callbackB{
-    [webViewh5B call:[NSString stringWithFormat:@"set(%@)",_data]];
+    [webViewh5B call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},300)",_data]];
 }
 @end
