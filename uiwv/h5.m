@@ -8,12 +8,6 @@
 
 #import "h5.h"
 
-@protocol JSObjcDelegate <JSExport>
-
-- (void)action:(NSString *)actionName data:(NSString*)js;
-
-
-@end
 @interface h5 ()<UIWebViewDelegate>
 {
     UIWebView *_webView;
@@ -50,35 +44,19 @@
 };
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
         _jsContext = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-        _jsContext[@"gb"]=^(NSString* a,NSString* b){
-            NSLog(@"%@", a);
+        _jsContext[@"gb"]=^(NSString* action,NSString* data){
+    SEL func_selector = NSSelectorFromString([NSString stringWithFormat:@"%@:",action]);
+    if ([callback respondsToSelector:func_selector]) {
+        [callback performSelector:func_selector withObject:data];
+    }
+            
     };
-     SEL func_selector = NSSelectorFromString(callbackFn);
-     if ([callback respondsToSelector:func_selector]) {
-     NSLog(@"回调成功...");
-     [callback performSelector:func_selector];
-     }else{
-     NSLog(@"回调失败...");
+     SEL callback_selector = NSSelectorFromString(callbackFn);
+     if ([callback respondsToSelector:callback_selector]) {
+     [callback performSelector:callback_selector];
      }
 
-        /*_jsContext[@"gb"] = self;
-        _jsContext.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) {
-            context.exception = exceptionValue;
-            NSLog(@"error：%@", exceptionValue);
-        };*/
 }
 
-#pragma mark - Web -> native
 
-- (void)action:(NSString *)actionName data:(NSString*)js
-{
-    NSLog(@"%@",actionName);
-   /* SEL func_selector = NSSelectorFromString(actionName);
-    if ([callback respondsToSelector:func_selector]) {
-        NSLog(@"回调成功...");
-        [callback performSelector:func_selector];
-        }else{
-            NSLog(@"回调失败...");
-            }*/
-}
 @end

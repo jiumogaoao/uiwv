@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewControllerB : UIViewController
+@interface demo : UIViewController
 
 @end

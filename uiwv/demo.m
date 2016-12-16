@@ -6,9 +6,9 @@
 //  Copyright © 2016年 高志强. All rights reserved.
 //
 
-#import "ViewControllerB.h"
+#import "demo.h"
 #import "h5.h"
-@interface ViewControllerB ()
+@interface demo ()
 {
     NSString *_data;
     h5 *webViewh5;
@@ -18,9 +18,11 @@
 }
 -(void)callbackA;
 -(void)callbackB;
+-(void)totop:(NSString *)js;
+-(void)tomain:(NSString *)js;
 @end
 
-@implementation ViewControllerB
+@implementation demo
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,9 +55,15 @@
 }
 */
 -(void)callbackA{
-    [webViewh5 call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},300)",_data]];
+    [webViewh5 call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},100)",_data]];
 }
 -(void)callbackB{
-    [webViewh5B call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},300)",_data]];
+    [webViewh5B call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},100)",_data]];
 }
+-(void)totop:(NSString *)js{
+    [webViewh5 call:js];
+};
+-(void)tomain:(NSString *)js{
+    [webViewh5B call:js];
+};
 @end
