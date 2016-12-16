@@ -158,12 +158,12 @@
                 $scope.open=false;
                 $scope.toggle=function(){
                     $scope.open=!$scope.open;
-                                                                         window.gb.bridge("webView","toggle()");
+                                                                         window.gb("tomain","toggle()");
                 }
                 $scope.hl=0;
                 $scope.changeHl=function(index){
                     $scope.hl=index;
-                                                                         window.gb.bridge("webView","hl("+index+")");
+                                                                         window.gb("tomain","hl("+index+")");
                 }
                 $scope.Roll=0;
                 $scope.rollLeft=function(){

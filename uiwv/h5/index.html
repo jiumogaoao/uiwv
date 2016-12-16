@@ -225,20 +225,20 @@
 				$scope.choose=function(index){
 					$scope.hl=index;
 					$scope.open=false;
-					window.gb.bridge("topView","hl("+index+")");
-                    window.gb.bridge("topView","toggle()");
+					window.gb("totop","hl("+index+")");
+                    window.gb("totop","toggle()");
 					}
                 $scope.rollLeft=function(){
                     if($scope.hl<$scope.data.length-1){
                         $scope.hl++;
                     }
-                    window.gb.bridge("topView","hl("+$scope.hl+")");
+                    window.gb("totop","hl("+$scope.hl+")");
                 }
                 $scope.rollRight=function(){
                     if($scope.hl>0){
                         $scope.hl--;
                     }
-                   window.gb.bridge("topView","hl("+$scope.hl+")");
+                   window.gb("totop","hl("+$scope.hl+")");
                 }
 
 				$scope.history=["搜索历史0","搜索历史1","搜索历史2","搜索历史3","搜索历史4"];
