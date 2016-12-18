@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+typedef void(^Block)(UIWebView* view);
 @interface h5 : NSObject
-@property (strong, nonatomic) NSNumber *diload;
--(id)init:(id)target frame:(CGRect)frameRect url:(NSString *)urlName callback:callbackName;
--(UIWebView *)getView;
+-(id)init:(id)target frame:(CGRect)frameRect url:(NSString *)urlName callback:(Block)callbackName;
 -(void)call:(NSString *)js;
 @end

@@ -14,14 +14,13 @@
     JSContext *_jsContext;
     NSString *_data;
     id callback;
-    NSString *callbackFn;
+    Block callbackFn;
 }
-
 @end
 @implementation h5
--(id)init:(id)target frame:(CGRect)frameRect url:(NSString *)urlName callback:callbackName{
+-(id)init:(id)target frame:(CGRect)frameRect url:(NSString *)urlName callback:(Block)fn{
     callback = target;
-    callbackFn = callbackName;
+    callbackFn = fn;
     self = [super init];
     _webView = [[UIWebView alloc] initWithFrame:frameRect];
     _webView.delegate = self;
@@ -36,9 +35,6 @@
     }
     return self;
 };
--(UIWebView *)getView{
-    return _webView;
-};
 -(void)call:(NSString *)js{
     [_jsContext evaluateScript:js];
 };
@@ -51,11 +47,7 @@
     }
             
     };
-     SEL callback_selector = NSSelectorFromString(callbackFn);
-     if ([callback respondsToSelector:callback_selector]) {
-     [callback performSelector:callback_selector];
-     }
-
+    callbackFn(webView);
 }
 
 

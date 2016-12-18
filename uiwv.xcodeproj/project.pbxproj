@@ -16,6 +16,7 @@
 		2F6E35341DF104160027FE0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E35321DF104160027FE0A /* LaunchScreen.storyboard */; };
 		2F6E353F1DF104160027FE0A /* uiwvTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E353E1DF104160027FE0A /* uiwvTests.m */; };
 		2F6E354A1DF104160027FE0A /* uiwvUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E35491DF104160027FE0A /* uiwvUITests.m */; };
+		2F6E525F1E06DC9500D63357 /* detailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E525E1E06DC9500D63357 /* detailVC.m */; };
 		2F841CF21DFD4242007308A0 /* font in Resources */ = {isa = PBXBuildFile; fileRef = 2F841CF11DFD4242007308A0 /* font */; };
 		2F94A1371E02774C00E59E5C /* demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A1361E02774C00E59E5C /* demo.m */; };
 		2FBC7DC81DF9463400E88C6D /* css in Resources */ = {isa = PBXBuildFile; fileRef = 2FBC7DC51DF9463400E88C6D /* css */; };
@@ -60,6 +61,8 @@
 		2F6E35451DF104160027FE0A /* uiwvUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uiwvUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F6E35491DF104160027FE0A /* uiwvUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uiwvUITests.m; sourceTree = "<group>"; };
 		2F6E354B1DF104160027FE0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F6E525D1E06DC9500D63357 /* detailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailVC.h; sourceTree = "<group>"; };
+		2F6E525E1E06DC9500D63357 /* detailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailVC.m; sourceTree = "<group>"; };
 		2F841CF11DFD4242007308A0 /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		2F94A1351E02774C00E59E5C /* demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demo.h; sourceTree = "<group>"; };
 		2F94A1361E02774C00E59E5C /* demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				2F6E35211DF104160027FE0A /* Supporting Files */,
 				2F94A1351E02774C00E59E5C /* demo.h */,
 				2F94A1361E02774C00E59E5C /* demo.m */,
+				2F6E525D1E06DC9500D63357 /* detailVC.h */,
+				2F6E525E1E06DC9500D63357 /* detailVC.m */,
 				2F54447C1E037DAB0083773A /* h5.h */,
 				2F54447D1E037DAB0083773A /* h5.m */,
 			);
@@ -321,6 +326,7 @@
 				2F6E35261DF104160027FE0A /* AppDelegate.m in Sources */,
 				2F94A1371E02774C00E59E5C /* demo.m in Sources */,
 				2F6E35231DF104160027FE0A /* main.m in Sources */,
+				2F6E525F1E06DC9500D63357 /* detailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

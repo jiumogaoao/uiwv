@@ -183,7 +183,7 @@
                                 <div class="top" style="background-image: url('{{list.icon}}')">
                                     <div class="dsc">{{list.dsc}}</div>
                                 </div>
-                                <div ng-repeat="n in list.list track by $index" class="point point{{n.type}}"  ng-switch="n.type">
+                                <div ng-repeat="n in list.list track by $index" class="point point{{n.type}}"  ng-switch="n.type" ng-click="go(n.id)">
                                     <div ng-switch-when="0">
                                         <div class="left">
                                             <div class="title">{{n.title}}</div>
@@ -247,6 +247,9 @@
                 $scope.serchMode=false;
 
                 $scope.data=[];
+                                                                         $scope.go=function(id){
+                                                                            window.gb("go",id+"");
+                                                                         }
                                                                          //原生调用
                                                                          window.hl=function(num){
                                                                          $scope.hl=num;
