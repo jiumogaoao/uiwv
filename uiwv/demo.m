@@ -32,7 +32,7 @@
     webViewh5 = [[h5 alloc] init:self frame:CGRectMake(0, 20, self.view.bounds.size.width, 88*ReSize) url:@"top" callback:^(UIWebView* view){
         webView = view;
         [self.view addSubview:view];
-        [webViewh5 call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},50)",_data]];
+        [webViewh5 call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},300)",_data]];
     }];
     
     
@@ -40,7 +40,7 @@
     webViewh5B = [[h5 alloc] init:self frame:CGRectMake(0, 20+88*ReSize, self.view.bounds.size.width, self.view.bounds.size.height - 20 -88*ReSize) url:@"index" callback:^(UIWebView* view){
         webViewB = view;
         [self.view addSubview:view];
-        [webViewh5B call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},50)",_data]];
+        [webViewh5B call:[NSString stringWithFormat:@"setTimeout(function(){set(%@)},300)",_data]];
     }];
     }
 
