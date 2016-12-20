@@ -194,8 +194,10 @@
                                                                          $scope.$apply();
                                                                          }
                 $timeout(function(){
-                   $scope.getH = document.getElementById('all').clientHeight*$scope.scale; 
-                },300);
+                   $scope.getH = document.getElementById('all').clientHeight*$scope.scale;
+                         window.gb("topLoad"," ");
+                         },100);
+                
             }]);
         </script>
     </body>
