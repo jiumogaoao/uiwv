@@ -389,6 +389,7 @@
         if ($scope.hl < $scope.data.length - 1) {
             $scope.hl++;
         }
+        $scope.Roll=-1*($scope.hl-1);
         typeSearch.refresh();
         rollFrame.refresh();
     }
@@ -396,6 +397,7 @@
         if ($scope.hl > 0) {
             $scope.hl--;
         }
+        $scope.Roll=-1*($scope.hl-1);
         typeSearch.refresh();
         rollFrame.refresh();
     }
