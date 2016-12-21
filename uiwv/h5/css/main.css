@@ -26,6 +26,7 @@ body {
     padding:0px;
 	position: relative; 
 	height:100px;
+  background-color: #fff;
   overflow: hidden;
 }
 #all{
@@ -33,6 +34,9 @@ body {
   position: relative; 
   transform-origin:top left;
   -webkit-transform-origin:top left;
+  float:left;
+  overflow:hidden;
+  margin:auto;
   }  
 button{
   display: block;
@@ -84,11 +88,18 @@ img{
   clear: both;
 }
 
-
 #main{
-  width: 750px;
-  position: relative;
+  position: absolute; 
+  top:0px;
+  right:0px;
+  left: 0px;
+  bottom: 0px;
+  overflow:hidden;
   }
-
-
-
+#scroll{
+  width: 100%;
+  position: absolute;
+  top:0px;
+  left: 0px;
+  padding-bottom: 20px;
+}
