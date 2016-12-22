@@ -40,7 +40,7 @@
 };
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
         self.jsContext = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-        self.jsContext[@"gb"]=^(NSString* action,NSString* data){
+        self.jsContext[@"ZTX"]=^(NSString* action,NSString* data){
     SEL func_selector = NSSelectorFromString([NSString stringWithFormat:@"%@:",action]);
     if ([self.callback respondsToSelector:func_selector]) {
         [self.callback performSelector:func_selector withObject:data];
