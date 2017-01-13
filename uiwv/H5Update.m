@@ -18,7 +18,7 @@
 }
 @end
 @implementation H5Update
--(void) check:(BlockVoid)callBlack{
+-(void) check:(BlockVoid)callBlack version:(NSNumber*)versionNumber{
     fileName=@"ztxH5.zip";
     folderName=@"/h5";
     fm=[NSFileManager defaultManager];
@@ -29,7 +29,7 @@
     //1.创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //2.确定请求的URL地址
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.139/?63"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"http://192.168.1.139/down/%@.zip",versionNumber]];
     //3.创建请求对象
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
