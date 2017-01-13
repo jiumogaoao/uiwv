@@ -25,10 +25,11 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     dcoumentpath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     [fm removeItemAtPath:[dcoumentpath stringByAppendingString:folderName] error:nil];
+    [fm removeItemAtPath:[NSString stringWithFormat:@"%@/%@",dcoumentpath,fileName] error:nil];
     //1.创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //2.确定请求的URL地址
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.139/?33"];
+    NSURL *url = [NSURL URLWithString:@"http://192.168.1.139/?63"];
     //3.创建请求对象
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
