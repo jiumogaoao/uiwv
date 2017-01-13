@@ -24,15 +24,18 @@
     self.callbackFn = fn;
     self.webView = [[UIWebView alloc] initWithFrame:frameRect];
     self.webView.delegate = self;
-    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:urlName ofType:@"html"];
-    NSURL *bundleUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *dcoumentpath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSString *htmlPath = [NSString stringWithFormat:@"%@/h5/%@.html",dcoumentpath,urlName];
+    NSURL *bundleUrl = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/h5",dcoumentpath]];
     NSError *error = nil;
     
     NSData *htmlData = [[NSData alloc]  initWithContentsOfFile: htmlPath];
     
-    if (error == nil) {//数据加载没有错误情况下
+    //if (error == nil) {//数据加载没有错误情况下
         [self.webView loadData:htmlData MIMEType:@"text/html" textEncodingName:@"UTF-8"baseURL: bundleUrl];
-    }
+    //}
+
     return self;
 };
 -(void)call:(NSString *)js{
