@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 typedef void(^BlockVoid)(void);
 @interface H5Update : NSObject
--(void) check:(BlockVoid)callBlack version:(NSNumber*)versionNumber;
+-(void) check:(BlockVoid)callBlack;
 @end
