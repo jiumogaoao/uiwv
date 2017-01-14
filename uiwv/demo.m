@@ -27,6 +27,7 @@
 -(void)go:(NSString *)pid;
 //js准备完成时调用
 -(void)load:(NSString *)js;
+-(void)runH5;
 @end
 
 @implementation demo
@@ -48,15 +49,14 @@
              
              h5Version=[responseObject objectForKey:@"version"];
              NSLog(@"%@", h5Version);
+             if([h5Version isEqual:0]){
+                 [self runH5];
+             }else{
+                 [[H5Update alloc] check:^(){
+                     [self runH5];
+                 } version:h5Version];
+             }
              
-             [[H5Update alloc] check:^(){
-                 //初始化h5 init:self frame:CGRectMake(x, y, w, h) url:@"文件名" callback:回调一个webView
-                 webViewh5 = [[h5 alloc] init:self frame:CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20) url:@"index" callback:^(UIWebView* view){
-                     webView = view;
-                     //把回调webView放进视图
-                     [self.view addSubview:view];
-                 }];
-             } version:h5Version];
              
          }
      
@@ -98,4 +98,12 @@
     NSLog(@"load");
 [webViewh5 call:[NSString stringWithFormat:@"set(%@)",_data]];
 };
+-(void)runH5{
+    //初始化h5 init:self frame:CGRectMake(x, y, w, h) url:@"文件名" callback:回调一个webView
+    webViewh5 = [[h5 alloc] init:self frame:CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20) url:@"index" callback:^(UIWebView* view){
+        webView = view;
+        //把回调webView放进视图
+        [self.view addSubview:view];
+    }];
+}
 @end
