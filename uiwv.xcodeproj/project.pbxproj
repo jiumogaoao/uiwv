@@ -19,6 +19,7 @@
 		2F6E354A1DF104160027FE0A /* uiwvUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E35491DF104160027FE0A /* uiwvUITests.m */; };
 		2F6E525F1E06DC9500D63357 /* detailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E525E1E06DC9500D63357 /* detailVC.m */; };
 		2F94A1371E02774C00E59E5C /* demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F94A1361E02774C00E59E5C /* demo.m */; };
+		2FA6517E1E35DF23003BAB12 /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA6517D1E35DF23003BAB12 /* FileTool.m */; };
 		2FFAF0B21E2861FA00958617 /* H5Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAF0B11E2861FA00958617 /* H5Update.m */; };
 		2FFAF0C01E28621200958617 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAF0B61E28621200958617 /* ioapi.c */; };
 		2FFAF0C11E28621200958617 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAF0B81E28621200958617 /* mztools.c */; };
@@ -79,6 +80,8 @@
 		2F6E525E1E06DC9500D63357 /* detailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailVC.m; sourceTree = "<group>"; };
 		2F94A1351E02774C00E59E5C /* demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demo.h; sourceTree = "<group>"; };
 		2F94A1361E02774C00E59E5C /* demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
+		2FA6517C1E35DF23003BAB12 /* FileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
+		2FA6517D1E35DF23003BAB12 /* FileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTool.m; sourceTree = "<group>"; };
 		2FFAF0B01E2861FA00958617 /* H5Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5Update.h; sourceTree = "<group>"; };
 		2FFAF0B11E2861FA00958617 /* H5Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5Update.m; sourceTree = "<group>"; };
 		2FFAF0B51E28621200958617 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				2F6E35241DF104160027FE0A /* AppDelegate.h */,
 				2F47D9011E35AA81006FD4E5 /* NetworkTool.h */,
 				2F47D9021E35AA81006FD4E5 /* NetworkTool.m */,
+				2FA6517C1E35DF23003BAB12 /* FileTool.h */,
+				2FA6517D1E35DF23003BAB12 /* FileTool.m */,
 				2F6E35251DF104160027FE0A /* AppDelegate.m */,
 				2FFAF0C51E28621B00958617 /* AFNetworking */,
 				2FFAF0B31E28621200958617 /* ZipArchive */,
@@ -425,6 +430,7 @@
 				2F6E35231DF104160027FE0A /* main.m in Sources */,
 				2F6E525F1E06DC9500D63357 /* detailVC.m in Sources */,
 				2FFAF0D71E28621B00958617 /* AFURLResponseSerialization.m in Sources */,
+				2FA6517E1E35DF23003BAB12 /* FileTool.m in Sources */,
 				2FFAF0D41E28621B00958617 /* AFNetworkReachabilityManager.m in Sources */,
 				2FFAF0C41E28621200958617 /* ZipArchive.mm in Sources */,
 				2FFAF0B21E2861FA00958617 /* H5Update.m in Sources */,

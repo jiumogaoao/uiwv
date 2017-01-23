@@ -11,6 +11,6 @@
 @interface NetworkTool : NSObject
 -(void)get:(NSString *)path target:(id)targetObject callback:(NSString *)callbackName;
 -(void)post:(NSString *)path data:(NSMutableDictionary*)dataObject target:(id)targetObject callback:(NSString *)callbackName;
--(void)upLoad:(NSString *)path filePath:(NSString *)filePathName target:(id)targetObject callback:(NSString *)callbackName;
+-(void)upLoad:(NSString *)path data:(NSMutableDictionary*)dataObject filePath:(NSString *)filePathName name:(NSString *)nameStr fileName:(NSString *)fileNameStr target:(id)targetObject callback:(NSString *)callbackName;
 -(void)downLoad:(NSString *)path filePath:(NSString *)filePathName target:(id)targetObject callback:(NSString *)callbackName;
 @end
