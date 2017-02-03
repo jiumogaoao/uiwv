@@ -52,7 +52,7 @@
     }
 
     //前面写服务器给的域名,后面拼接上需要提交的参数，假如参数是key＝1
-    NSString *domainStr = [NSString stringWithFormat:@"http://192.168.1.139?version=%@",localVersion];
+    NSString *domainStr = [NSString stringWithFormat:@"http://192.168.1.105?version=%@",localVersion];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -94,7 +94,7 @@
     //1.创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //2.确定请求的URL地址
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"http://192.168.1.139/down/%@.zip",versionNumber]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat: @"http://192.168.1.105/down/%@.zip",versionNumber]];
     //3.创建请求对象
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
